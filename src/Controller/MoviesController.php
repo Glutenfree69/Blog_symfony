@@ -21,10 +21,13 @@ class MoviesController extends AbstractController
     #[Route('/movies', name: 'app_movies')]
     public function index(EntityManagerInterface $em): Response
     {
-        $repository = $em->getRepository(Movie::class);
-        $movies = $repository->findAll();
 
-        dd($movies);
+        // findAll() - SELECT * FROM movies
+        // find(...) - SELECT * FROM movies WHERE id = ...
+        // findBy() - SELECT * FROM movies ORDER BY id DESC  (  findBy([], ['id' => 'DESC'])  )
+        // findOneBy() - SELECT * FROM movies WHERE id = 7 AND title = 'The Dark Knight' ORDER BY id DESC  (  findOneBy(['id' => 7, 'title' => 'The Dark Knight'], ['id' => 'DESC'])  )
+        // count() - SELECT COUNT() FROM movies WHERE id = 7  (  count(['id' => 7])  )
+
 
         return $this -> render('index.html.twig');
     }
